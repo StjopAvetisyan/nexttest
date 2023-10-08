@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  next:
+    container_name: slot_next
+    build:
+      context: .
+      target: dev
+      dockerfile: Dockerfile
+    ports:
+      - "6062:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env.production
+    networks:
+      - slot_network
+
+networks:
+  slot_network:
+    driver: bridge
+
